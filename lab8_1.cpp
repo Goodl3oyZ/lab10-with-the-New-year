@@ -3,6 +3,9 @@
 using namespace std;
 
 int main(){	
+	cout << "Enter initial loan: ";
+	cout << "Enter interest rate per year (%): ";
+	cout << "Enter amount you can pay per year: ";
 
 	//use 'setw' to set width of table and 'left' to set left-alignment
 	//you can change input argument of 'setw()' to see the effect
