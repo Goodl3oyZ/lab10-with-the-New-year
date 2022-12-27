@@ -2,14 +2,15 @@
 #include<iomanip> //For using setw(), setprecision(), ...
 using namespace std;
 
-int main(){	
+int main(){
+	double princ,itr,ppy; //princ=เงินต้น,itr=ดอกเบี้ย%,ppy=ค่างวดpayment per year,year=ปีที่จะจ่ายเงินจนหมด
 	cout << "Enter initial loan: ";
+	cin>>princ;
 	cout << "Enter interest rate per year (%): ";
+	cin>>itr;
 	cout << "Enter amount you can pay per year: ";
+	cin>>ppy;
 
-	//use 'setw' to set width of table and 'left' to set left-alignment
-	//you can change input argument of 'setw()' to see the effect
-	//Try to change from 'left' to 'right' and see the effect
 	cout << setw(13) << left << "EndOfYear#"; 
 	cout << setw(13) << left << "PrevBalance"; 
 	cout << setw(13) << left << "Interest"; 
@@ -17,17 +18,29 @@ int main(){
 	cout << setw(13) << left << "Payment";
 	cout << setw(13) << left << "NewBalance";
 	cout << "\n";
-	
-	//use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
-	//you can change input argument of 'setprecision()' to see the effect
+	int year=1;
+    double total;
+	double newb=princ+(0.01*itr*princ)-ppy,interest;
+do{
 	cout << fixed << setprecision(2); 
-	cout << setw(13) << left << 1; 
-	cout << setw(13) << left << 1000.0;
-	cout << setw(13) << left << 50.0;
-	cout << setw(13) << left << 1050.0;
-	cout << setw(13) << left << 100.0;
-	cout << setw(13) << left << 950.0;
-	cout << "\n";	
-	
+	    interest=0.01*itr*princ;
+        total=princ+interest;
+	    newb=total-ppy;
+	cout << setw(13) << left << year; 
+	cout << setw(13) << left << princ;
+	cout << setw(13) << left << interest;
+    cout << setw(13) << left << total;
+	cout << setw(13) ; //payment
+    	if(total<=ppy) cout<<total;
+	    else cout<<ppy;
+	    
+	cout << setw(13); //newbalance
+    if(newb<=0)
+    newb=0;
+    cout <<newb;
+	cout << "\n";
+		year=year+1;
+	    princ=newb;
+}while(newb>0);	
 	return 0;
 }
